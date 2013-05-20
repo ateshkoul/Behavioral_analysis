@@ -1,26 +1,19 @@
-#test script for factorial analysis
+#script for factorial analysis
 library(psych)
-a = read.table("2x2_acc.txt",header=T)
+#read the data in table format
+a = read.table("filename.txt",header=T)
+#preview the column names
 names(a)
+
+#perform the anova using aov command
+# the syntax is for repeated measures anova 
+# where acc = dependent variable, script, stim = dependent variables
+# sub = subjects (because repeated measures)
+ 
 b = aov(acc~(script*stim)+Error(factor(sub)/(script*stim)),a)
-#b = aov(Acc ~ Exp,a)
+# view the results using summary function
+ 
 summary(b)
-print(model.tables(b,"means"),digits=3)    
-#report the means and the number of subjects/cell
-boxplot(Acc~(Stim*Lan),data=a)
-#graphical summary of means of the 6 cells
-
-
-
-
-describe(a$Acc[18:34])
-
-print(model.tables(b,"means"),digits=3)
-1:10
-y=c(7:20,200)
-var(a$Acc[18:34])
-shapiro.test(a$Acc)
-qq.plot(a$Acc)
 
 #Two way within subject anova
 
